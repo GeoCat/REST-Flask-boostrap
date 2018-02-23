@@ -1,0 +1,8 @@
+Flask==0.12.2
+marshmallow==2.13.5
+Flask_RESTful==0.3.6
+SQLAlchemy==1.1.10
+webargs==1.7.0
+flasgger==0.8.0
+Flask_Env==1.0.1
+Flask_SQLAlchemy==2.1

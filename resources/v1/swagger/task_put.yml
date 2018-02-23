@@ -1,0 +1,25 @@
+Creates a task based on uuid and text if not assigned then the database will generate one
+---
+parameters:
+      - name: uuid
+        in: path
+        type: string
+        description: uuid version 4 associated with JSON with arguments
+        default: fe4a3e33-cb4b-42ac-b29b-a8160a85bf7e
+        required: true
+      - name: body
+        in: body
+        description: JSON with any content or structure
+        default: '{"task": "I need to do homework"}'
+        require: true
+consumes:
+  - application/json
+produces:
+  - application/json
+responses:
+  201:
+    description: Content commited to DB
+  409:
+    description: DB integrity error maybe the UUID alreadt exists use DELETE
+  422:
+    description: Invalid value

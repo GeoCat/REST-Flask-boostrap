@@ -1,0 +1,8 @@
+Basic message
+Welcome/ECHO message for testing and version control
+---
+produces:
+        - application/json
+responses:
+  200:
+    description: JSON with message, version number and current time

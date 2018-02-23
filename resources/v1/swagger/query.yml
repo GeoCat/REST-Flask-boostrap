@@ -1,0 +1,27 @@
+
+
+Basic query
+
+Passes arguments to code and returns JSON with values
+---
+parameters:
+  - name: number
+    in: query
+    type: number
+    required: true
+    maximum: -1.0
+    minimum: -1.0
+    default: 0.0
+    description: Floating number between -1.0 and 1.0
+  - name: string
+    in: query
+    type: string
+    required: true
+    default: cat
+    description: String equal to cat or dog otherwise input is not parsed
+
+produces:
+        - application/json
+responses:
+  200:
+    description: JSON with message, version number and current time

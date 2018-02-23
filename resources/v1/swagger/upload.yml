@@ -1,0 +1,19 @@
+Uploads file
+Generic uploader
+---
+consumes:
+    - text/plain
+parameters:
+  - name: upfile
+    in: formData
+    type: file
+    description: The file to upload.
+produces:
+        - application/json
+responses:
+  200:
+    description: OK
+  400:
+    description: Bad request mainly a missing file
+  415:
+    description: Mimetype is incorrect check if the file is mxd

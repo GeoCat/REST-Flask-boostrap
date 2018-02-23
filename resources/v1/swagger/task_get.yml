@@ -1,0 +1,16 @@
+Get task json with specific uuid
+---
+
+parameters:
+      - name: uuid
+        in: path
+        type: string
+        description: uuid version 4 associated with JSON with arguments
+        default: fe4a3e33-cb4b-42ac-b29b-a8160a85bf7e
+        required: true
+
+produces:
+        - application/json
+responses:
+  200:
+    description: JSON taks information 
