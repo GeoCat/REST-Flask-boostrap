@@ -1,3 +1,23 @@
+TL;DR
+=====
+
+Flask, Flask-Restfull, SQLALChemy and Flasgger (OpenAPI) code to bootstrap REST API projects
+
+Clone and run:
+```
+git clone https://github.com/GeoCat/REST-Flask-boostrap.git
+cd REST-Flask-boostrap.git
+pip3 install -r requirement.txt
+python3 ./app.py
+```
+
+Open browser and go to :
+```
+http://127.0.0.1:5001/api/v1.0/apidocs#/default
+```
+
+Play around :)
+
 GENERAL INFORMATION
 ===================
 
