@@ -7,7 +7,7 @@ Clone and run:
 ```
 git clone https://github.com/GeoCat/REST-Flask-boostrap.git
 cd REST-Flask-boostrap.git
-pip3 install -r requirement.txt
+pip3 install -r requirements.txt
 python3 ./app.py
 ```
 
