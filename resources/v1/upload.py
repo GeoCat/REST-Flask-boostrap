@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """Module for testing query logins and returns the entered values"""
 import os
 from webargs.flaskparser import FlaskParser
@@ -22,20 +22,21 @@ class Upload(Resource):
     def post(self):
         """Uploads a file"""
 
-        file_obj = FlaskParser.parse_files(self, request, "upfile", field=fields.Raw()) # pylint: disable=maybe-no-member
+        file_obj = FlaskParser.parse_files(self, request, "upfile",
+                                           field=fields.Raw())  # pylint: disable=maybe-no-member
 
-        if isinstance(file_obj, type(marshmallow.missing)): #werkzeug.datastructures.FileStorage
-            return {"message":"File missing"}, 400 #Bad request
+        if isinstance(file_obj, type(marshmallow.missing)):  # werkzeug.datastructures.FileStorage
+            return {"message": "File missing"}, 400  # Bad request
 
         size = Upload.get_size(file_obj)
 
         if size > app.config["MAX_UPLOAD"]:
-            return {"message":"You exceded file limit of {}".format(app.config["MAX_UPLOAD"])}, 400
+            return {"message": "You exceded file limit of {}".format(app.config["MAX_UPLOAD"])}, 400
 
         if file_obj.mimetype != Upload.mimetype:
-            return {"message":"File mimetype is {} instead of {}"
-                              .format(str(file_obj.mimetype),
-                                      Upload.mimetype)}, 415 #415 Unsupported Media Type
+            return {"message": "File mimetype is {} instead of {}"
+                .format(str(file_obj.mimetype),
+                        Upload.mimetype)}, 415  # 415 Unsupported Media Type
 
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file_obj.filename)
         file_obj.save(file_path)

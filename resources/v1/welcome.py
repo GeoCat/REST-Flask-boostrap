@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """Welcome message of REST api. This is for testing purpose only"""
 
 import datetime
@@ -11,7 +11,8 @@ from flasgger import swag_from
 
 class Welcome(Resource):
     """Welcome class for testing REST"""
-    #pylint: disable=R0201
+
+    # pylint: disable=R0201
     @swag_from('swagger/welcome.yml')
     def get(self):
         """GET Request code"""
@@ -19,4 +20,4 @@ class Welcome(Resource):
 
         app.logger.debug("Time of request {}".format(now))
 
-        return jsonify({"message":"Lekker!!!", "version": app.config["VERSION"], "date": now})
+        return jsonify({"message": "Lekker!!!", "version": app.config["VERSION"], "date": now})
