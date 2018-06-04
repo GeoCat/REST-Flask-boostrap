@@ -30,7 +30,7 @@ But, sometimes putting everything together can be quite involved.
 *REST-Flask-boostrap* contains bootstrap code to get you started 
 developing your own REST server, and/or can be used as study-material.
 
-The project uses the following packages, see [requirements.txt](requirements.txt) for versions
+The project requires the following packages, see [requirements.txt](requirements.txt) for versions
 used:
 
 * Flask
@@ -91,20 +91,20 @@ If necessary there are text files for testing in folder `tests/data`
 
 The following packages/frameworks are part of the code:
 
-* [Flask-Restful](https://flask-restful.readthedocs.io)** Functions/Classes for REST API.
-* [webargs](https://github.com/sloria/webargs)** Argument validation and check
-* [Flask_Env](https://github.com/brettlangdon/flask-env)** Flask configuration using classes
-* [Flask_SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/)** SQLAlchemy for database access and record control
-* [flasgger](https://github.com/rochacbruno/flasgger)** Testing REST and documenting functionality
+* [Flask-Restful](https://flask-restful.readthedocs.io) - Functions/Classes for REST API.
+* [webargs](https://github.com/sloria/webargs) - Argument validation and check
+* [Flask_Env](https://github.com/brettlangdon/flask-env) - Flask configuration using classes
+* [Flask_SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/) - SQLAlchemy for database access and record control
+* [flasgger](https://github.com/rochacbruno/flasgger) - Testing REST and documenting functionality
 
 # app.py
 
-This is the python file from where we start Flask REST api, [read it first](app.py). 
+This is the python file from where we start Flask REST api, [read it here](app.py). 
 
-# REST structure
+# REST Structure
 
 Flask-Restful (F-R) uses a very straightforward class structure.
-Read more details [in the F-R documentation](https://flask-restful.readthedocs.io)).
+Read more details [in the F-R documentation](https://flask-restful.readthedocs.io).
 
 Each endpoint is represented as a class located in the folder `./resources/v1`. 
 
@@ -120,7 +120,7 @@ class Welcome(Resource):
 ```
 
 
-The endpoints are registered in the file: [app.py](app.py) e.g:
+REST endpoints are registered in the file: [app.py](app.py) e.g:
 
 ```
 from resources.v1.welcome import Welcome
@@ -128,8 +128,8 @@ from resources.v1.welcome import Welcome
 API10.add_resource(Welcome, '/welcome')
 ```
 
-The REST endpoint `/welcome` is now mapped to the class `Welcome`. 
-Note in the code that we use [Flask Blueprints](http://flask.pocoo.org/docs/1.0/blueprints/):
+The REST endpoint `/welcome` is now mapped to the class [Welcome](resources/v1/welcome.py). 
+Note in [app.py](app.py) that we use [Flask Blueprints](http://flask.pocoo.org/docs/1.0/blueprints/):
 
 ```
 APP = Flask(__name__)
@@ -138,15 +138,15 @@ PREFIX = "/api/v1.0"
 API10 = Api(BLUEPRINT, prefix=PREFIX)
 ```
 
-Therefore the actual URL for the endpoint will be something like `http://localhost:5001/api/v1.0/welcome`
+Therefore, the actual URL for the endpoint will be something like `http://localhost:5001/api/v1.0/welcome`
 
 For more information about Flask Blueprints read [here](http://flask.pocoo.org/docs/0.12/blueprints/).
 
 # Webargs
 
-There are 10 milion ways to check arguments and requests being passed to Flask, 
-even Flask-Restful has amazing stuff but `Webargs` is very simple and 
-gets the job done integrated on the classes from Flask-Restful
+There are a zillion ways to check arguments and requests being passed to Flask, 
+even Flask-Restful has amazing stuff, but `Webargs` is very simple and 
+gets the job done integrated on the classes from Flask-Restful without explicit coding.
 
 Webargs docs are [here](https://webargs.readthedocs.io/en/latest/).
 
@@ -172,22 +172,27 @@ class Query(Resource):
         return jsonify(number=number, string=string)
 ```
 
-Looking into the class `Query` and its `get()` method, we see 
+Looking into the class [Query](resources/v1/query.py) and its `get()` method, we see 
 two input arguments defined: **number** and **string**.
 
-`number` will be validated for values between -1.0 and 1.0 while `string` has to be `"dog"` or `"cat"`.
+`number` will be validated for values between `-1.0` and `1.0` while `string` has to be `"dog"` or `"cat"`.
 
 The decorator `@use_kwargs` on the `get()` method is from package Webargs.
 
 # OpenAPI Flasgger
 
 OpenAPI is an open specification for describing, consuming and generating contents for 
-REST-based web services, for more information:([link](https://github.com/OAI/OpenAPI-Specification)).
+REST-based web services, 
+for more information see the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).
 
-Normally we have tools like Postman for testing REST endpoints, since it is simple to make 
-an HTTP call from your browser. But when run swagger we have a dedicated website for 
-testing and documenting the API automagically.
-For example for argument validation, and with default data and auto-generated documentation.
+[Swagger](https://swagger.io/) is an implementation of the OpenAPI.
+
+[Flasgger](https://github.com/rochacbruno/flasgger) is an OpenAPI/Swagger implementation for Flask.
+
+Normally we have tools like `Postman` for testing REST endpoints, since it is simple to make 
+an HTTP call from your browser. But when running Swagger (and thus Flasgger),
+we have a dedicated website for testing and documenting the API automagically.
+With argument validation, default test-data and auto-generated documentation.
 
 Your REST needs to be described as a YAML (`.yml`) document, 
 for each endpoint we define a YAML file. These are here located in the folder: `/resources/v1/swagger` 
@@ -216,6 +221,8 @@ in your running Flask server via:
 ```
 http://127.0.0.1:5001/api/v1.0/apidocs#/default
 ```
+
+![Screenshot](flasgger.png)
 
 You will learn a lot by playing with the system :), just try!
 
