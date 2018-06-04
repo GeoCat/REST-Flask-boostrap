@@ -226,7 +226,7 @@ http://127.0.0.1:5001/api/v1.0/apidocs#/default
 
 You will learn a lot by playing with the system :), just try!
 
-# Configuration
+# Configuration with Flask_Env
 
 Configuration classes are in the folder `etc/__init__.py`
 
@@ -236,7 +236,7 @@ deployments. By using class-inheritance for our Flask-configuration we have
 one base class containing all settings and child classes with 
 minor modifications specific to each deployment environment.
 
-Flask configuration docs ([here](http://flask.pocoo.org/docs/0.12/config/))
+Flask configuration docs are [here](http://flask.pocoo.org/docs/0.12/config/).
 
 In the docs we have something "ugly":
 
@@ -246,7 +246,8 @@ app.config.from_object('configmodule.ProductionConfig')
 
 The config module is imported as a string. Find this strange?
 
-**Flask**_Env allows loading a class as configuration!
+[Flask_Env](https://github.com/brettlangdon/flask-env) allows loading a Python 
+class (string name) as configuration!
 
 In [app.py](app.py):
 
