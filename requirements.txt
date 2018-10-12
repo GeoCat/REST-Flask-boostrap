@@ -1,5 +1,5 @@
 Flask==0.12.4
-marshmallow==2.13.5
+marshmallow==2.16.0
 Flask_RESTful==0.3.6
 SQLAlchemy==1.2.8
 webargs==1.7.0
